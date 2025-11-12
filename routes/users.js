@@ -12,6 +12,10 @@ router.get('/new', (req,res)=>{
     res.send("new user form");
 });
 
+router.post('/', (req,res)=>{
+   
+});
+
 // router.get(':/id', (req,res)=>{
 //     res.send(`Getting user data: ${req.params.id} `);
 // });
@@ -23,6 +27,9 @@ router.get(':/id', get((req,res)=>{
 }).put((req,res)=>{
     res.send(`Updating user data: ${req.params.id} `);
 }));
+
+
+const users = [{name: "Chris", role: admin}, {name: "Alex", role: user}, {name: "Sam"}];
 
 router.param("id", (req,res,next,id)=>{
     console.log(`accessing user id: #${id}`);

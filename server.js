@@ -1,5 +1,5 @@
 const express = require(`express`);
-const usersRouter = require(`./routes/users`);
+const userRouter = require(`./routes/users`);
 const postRouter = require(`./routes/posts`);
 
 const app = express();
@@ -29,6 +29,8 @@ app.get('/posts', (req,res)=>{
 app.get('/posts/new', (req,res)=>{
     res.send("new post form");
 });
+
+
 
 app.listen(3030); //listening on port 3030 // localhost:3030
 

@@ -3,17 +3,36 @@ const app = express(); //calling this function sets up a server
 
 const router = express.Router();
 
-
 router.get('/', (req,res)=>{
-    res.send("user list");
+    res.render("users/list", {users: users});
 });
 
 router.get('/new', (req,res)=>{
-    res.send("new user form");
+    res.render("users/new"), {firstName: ""};
 });
 
 router.post('/', (req,res)=>{
-   
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const age = req.body.age;
+    const gender = req.body.gender;
+
+    const isValid = firstName !=="" && lastName !=="";
+        
+    if(isValid){
+        console.log(`Adding new user...${firstName}`);
+        users.push({
+            name: firstName,
+            lastName: lastName,
+            gender: gender,
+            age: age,  
+        });
+        console.log(`New set of Users: ${users}`);
+        res.send("users created!");
+    }else{
+        console.log("Error adding user!")
+        res.render("users/new", {firstName: firstName});
+    }
 });
 
 // router.get(':/id', (req,res)=>{
@@ -29,7 +48,14 @@ router.get(':/id', get((req,res)=>{
 }));
 
 
-const users = [{name: "Chris", role: admin}, {name: "Alex", role: user}, {name: "Sam"}];
+const users = [
+    {
+    firstName: "Chris",
+    lastName: "Shavuo",
+    age: 21,
+    gender: "Male"
+    }
+];
 
 router.param("id", (req,res,next,id)=>{
     console.log(`accessing user id: #${id}`);
